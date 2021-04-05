@@ -42,9 +42,9 @@ def get_unvisited_user(current_user: User) -> Union[User, None]:
 
 
 def get_familiar_users(current_user: User) -> Union[User, None]:
-    met_users = User.objects.filter((Q(sent_match_requests__recipient_user=current_user) &
+    familiar_users = User.objects.filter((Q(sent_match_requests__recipient_user=current_user) &
                          Q(sent_match_requests__acquaintance_state='2')) |
                         (Q(received_match_requests__sender_user=current_user) &
                          Q(received_match_requests__acquaintance_state='2')))
 
-    return met_users
+    return familiar_users
